@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Register from './pages/Auth/Register'
 import Login from './pages/Auth/Login'
+import DatabaseDashboard from './pages/Database/DatabaseDashboard' // Import our new dashboard page
 import './App.css'
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
         <div style={{ display: 'flex', gap: '15px' }}>
           <Link style={linkStyle} to="/register">Register (Auth)</Link>
           <Link style={linkStyle} to="/login">Login (Auth)</Link>
-          {/* You will add your future links (Cache, RateLimit, etc.) right here! */}
+          {/* New Live Data Pipeline Link Added Cleanly */}
+          <Link style={linkStyle} to="/database">MySQL Database (D:)</Link>
         </div>
       </nav>
 
@@ -27,6 +29,8 @@ function App() {
           } />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          {/* New Route Target mapped to the component */}
+          <Route path="/database" element={<DatabaseDashboard />} />
         </Routes>
       </section>
 
