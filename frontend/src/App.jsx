@@ -1,60 +1,29 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import Register from './pages/Auth/Register'
-import Login from './pages/Auth/Login'
-import DatabaseDashboard from './pages/Database/DatabaseDashboard' // Import our new dashboard page
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Register from "./pages/Auth/Register";
+import Login from "./pages/Auth/Login";
+import DatabaseDashboard from "./pages/Auth/DatabaseDashboard"; 
+import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <Router>
-      {/* Universal Hub Navigation Header */}
-      <nav style={navStyle}>
-        <div style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>🌐 API Learning Hub</div>
-        <div style={{ display: 'flex', gap: '15px' }}>
-          <Link style={linkStyle} to="/register">Register (Auth)</Link>
-          <Link style={linkStyle} to="/login">Login (Auth)</Link>
-          {/* New Live Data Pipeline Link Added Cleanly */}
-          <Link style={linkStyle} to="/database">MySQL Database (D:)</Link>
-        </div>
+      {/* Simple Navigation Bar to click through your endpoints */}
+      <nav style={{ padding: "15px", background: "#222", marginBottom: "20px", borderRadius: "8px" }}>
+        <Link to="/login" style={{ margin: "0 15px", color: "#646cff", textDecoration: "none" }}>Login</Link>
+        <Link to="/register" style={{ margin: "0 15px", color: "#646cff", textDecoration: "none" }}>Sign Up</Link>
+        <Link to="/dashboard" style={{ margin: "0 15px", color: "#646cff", textDecoration: "none" }}>💾 Dashboard</Link>
       </nav>
 
-      {/* Main Container Viewport */}
-      <section id="center" style={{ minHeight: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="container">
         <Routes>
-          <Route path="/" element={
-            <div style={{ textAlign: 'center' }}>
-              <h1>Welcome to your Backend Mastery Console</h1>
-              <p>Select an API concept from the navigation menu above to start testing.</p>
-            </div>
-          } />
-          <Route path="/register" element={<Register />} />
+          {/* Default view routes to Login */}
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          {/* New Route Target mapped to the component */}
-          <Route path="/database" element={<DatabaseDashboard />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<DatabaseDashboard />} />
         </Routes>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      </div>
     </Router>
-  )
+  );
 }
-
-// Minimal inline navigation styling
-const navStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '15px 30px',
-  background: '#1a1a1a',
-  borderBottom: '1px solid #333',
-  color: '#fff'
-}
-
-const linkStyle = {
-  color: '#646cff',
-  textDecoration: 'none',
-  fontWeight: '500'
-}
-
-export default App
